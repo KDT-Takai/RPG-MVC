@@ -1,0 +1,57 @@
+めもめもめもめも
+
+まずプールについて
+先に確保して空いてるとこにぶち込む
+秦泉寺先生の使用
+また、改良する
+
+クラス設計
+
+
+コンストラクタ
+ファクトリーパターン
+データテーブル
+シングルトン ScreenManagerで使用
+有限状態機械
+オプジェクトプール 秦泉寺先生の授業で作成したものを使用
+
+
+
+Entity（基底クラス）
+└── CharaBase（HPなど共通データ）
+    ├── Player
+    └── Enemy
+
+ObjectPool（再利用）
+Factory（生成管理）
+StateMachine（状態制御）
+GameScene（全体をまとめる）
+
+
+
+
+
+//基底
+//└─ Entity
+//     ├─ Player
+//     └─ Enemy
+//
+//データテーブル + Factory
+//└─ EntityData
+//└─ EntityFactory
+//
+//オブジェクト管理
+//└─ ObjectPool<T>
+//└─ PoolHandle<T>
+//
+//Entity管理
+//└─ EntityManager
+//     ├─ ObjectPool<Player> + std::vector<PoolHandle<Player>>
+//     └─ ObjectPool<Enemy>  + std::vector<PoolHandle<Enemy>>
+//     ├─ UpdateAll()
+//     └─ RenderAll()
+//
+//シーン管理
+//└─ GameScene
+//     └─ EntityManager
+//└─ ScreenManager Singleton<ScreenManager>シングルトンとして保持

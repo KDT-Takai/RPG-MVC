@@ -1,0 +1,41 @@
+コントロールで入力処理
+それをGameSceneからViewに渡す？
+
+Model
+// キャラクターのデータ管理
+	CharaBase
+	// ゲッター等
+		takeDamage()
+		getAttack()
+		isAlive()
+View
+// 戦闘画面の表示
+	BattleView
+	// ステータス表示
+	void showStatus
+	// ダメージ表示
+	void ShowDamage(int damage)
+	// メッセージ表示
+	void ShowMassage(std::string msg)
+	 std::cout << msg << endl;
+
+Controller
+// ModelとViewをつなぐ
+	BattleController
+	CharaBase* Player;
+	CharaBase* Enemy;
+	BattleView* view;
+
+	void processAttack() {
+		// Modelから攻撃力を取得
+		int damage = Plaeyr->getAttack();
+		// Modelにダメージを適用
+		enemy->takeDamage(damage);
+		// Viewに表示
+		View->ShowDamage(damage);
+		view->ShowStatus("敵",enemy->getHP());
+	}
+
+CharaBaseにある
+RenderStateをVeiwクラスにする
+CharaBaseからRenderStateの削除

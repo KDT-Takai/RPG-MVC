@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="System">
+      <UniqueIdentifier>{c8219eb3-2141-42fc-b351-ed2a527efc8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\ObjectPool">
+      <UniqueIdentifier>{bf6579e1-bb3a-4f04-a8b3-1c8aa69adf39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Main">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="System\Scene">
+      <UniqueIdentifier>{8efd8620-5002-4aec-b92e-9952d4a8aa46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{6b0679ab-7ed1-4093-b45f-12ca815515a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Singleton">
+      <UniqueIdentifier>{1ef204aa-7093-491e-807d-09f907ccae89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Text">
+      <UniqueIdentifier>{cfd2827a-f6f0-4f4b-a4b3-ce8242c52dd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\!GameScene">
+      <UniqueIdentifier>{3394b77d-0498-4eb8-a0f7-a1dfed2b4566}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Scene\ScreenBase">
+      <UniqueIdentifier>{d9dcc629-ce0b-4485-a12f-4420a85f2e2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Player">
+      <UniqueIdentifier>{691a5e9e-ed03-41cc-bb7d-2a05c5255c73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Enemy">
+      <UniqueIdentifier>{fcdc0f43-cc85-4ee3-87b8-4f462900f33b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\CharaFactory">
+      <UniqueIdentifier>{288c86d3-f0db-466f-b3e2-a26a16e60307}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\CharaData">
+      <UniqueIdentifier>{327a1b10-a00e-414b-9d48-7a4fd8967df5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\CharaBase">
+      <UniqueIdentifier>{1cedb712-5316-4f96-9518-7dd8b73b6dd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\BattleView">
+      <UniqueIdentifier>{0358805b-e3f1-4abb-85bf-35a1d040500c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\BattleController">
+      <UniqueIdentifier>{4151df30-c6ff-4434-a326-446b57a4cb91}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Programs\Main.cpp">
+      <Filter>System\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Programs\ScreenManager.cpp">
+      <Filter>System\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Programs\GameScene.cpp">
+      <Filter>Game\!GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Programs\CharaFactory.cpp">
+      <Filter>Game\CharaFactory</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Programs\ObjectPool.h">
+      <Filter>System\ObjectPool</Filter>
+    </ClInclude>
+    <ClInclude Include="Programs\ScreenManager.h">
+      <Filter>System\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Programs\GameScene.h">
+      <Filter>Game\!GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Programs\Singleton.h">
+      <Filter>System\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="Programs\Text.h">
+      <Filter>System\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Programs\ScreenBase.h">
+      <Filter>System\Scene\ScreenBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Programs\CharaBase.h">
+      <Filter>Game\CharaBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Programs\Player.h">
+      <Filter>Game\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Programs\CharaData.h">
+      <Filter>Game\CharaData</Filter>
+    </ClInclude>
+    <ClInclude Include="Programs\Enemy.h">
+      <Filter>Game\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Programs\CharaFactory.h">
+      <Filter>Game\CharaFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="Programs\BattleView.h">
+      <Filter>Game\BattleView</Filter>
+    </ClInclude>
+    <ClInclude Include="Programs\BattleController.h">
+      <Filter>Game\BattleController</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Memo.txt" />
+    <Text Include="MVCmemo.txt" />
+  </ItemGroup>
+</Project>
