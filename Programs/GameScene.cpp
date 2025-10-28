@@ -27,6 +27,7 @@ void Game::Update() {
         if (enemies.empty()) break;
 
         PoolHandle<CharaBase>& p = **it; // unique_ptrの中身にアクセス
+        if (p->IsDead()) continue;
         // 描画
         std::cout << p->GetData().name << " のターン。攻撃を選択してください : 0~" << enemies.size() - 1 << "): ";
         int choice;     // 誰を選択したかの表示
@@ -39,6 +40,11 @@ void Game::Update() {
             BattleController battleController(p.operator->(), enemies[choice]->operator->(), &battleView);
             battleController.processAttack();
 
+
+            if (targetEnemy->GetData().hp <= 0) {
+                std::cout << targetEnemy->GetData().name << " は倒れた！\n";
+                enemies.erase(enemies.begin() + choice);
+            }
         }
     }
     // 確認
@@ -53,12 +59,18 @@ void Game::Update() {
         if (players.empty()) break;
 
         PoolHandle<CharaBase>& e = **it;
+        if (e->IsDead()) continue;
         int targetIndex = std::rand() % players.size();
+        PoolHandle<CharaBase>& targetPlayer = *players[targetIndex];
 
         BattleView battleView;  // View
         BattleController battleController(e.operator->(), players[targetIndex]->operator->(), &battleView);
         battleController.processAttack();
 
+        if (targetPlayer->GetData().hp <= 0) {
+            std::cout << targetPlayer->GetData().name << " は倒れた！\n";
+            players.erase(players.begin() + targetIndex);
+        }
     }
 
     // 確認
