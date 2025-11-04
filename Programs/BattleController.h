@@ -9,9 +9,9 @@ class BattleController
 private:
 	
     // それぞれを持つ
-    CharaBase* Owner;
-	CharaBase* Target;
-	BattleView* View;
+    CharaBase* Owner;   // 攻撃するオーナー
+	CharaBase* Target;  // ターゲット
+	BattleView* View;   // 描画
 
 public:
 

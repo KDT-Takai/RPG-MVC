@@ -3,7 +3,7 @@
 
 // EntityData Entityが持つ情報
 struct CharaData {
-    int id;
+    int id;             // ID
 	std::string name;   // 名前
     int hp = 0;         // ヒットポイント
     int atk = 0;        // 攻撃力

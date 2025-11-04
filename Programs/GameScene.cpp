@@ -8,7 +8,7 @@ Game::Game() {
     // ランダム
     std::srand(static_cast<unsigned>(std::time(nullptr)));
     // フラグ
-    isGameOver = false;
+    isGame = false;
     // プレイヤー生成
     players.push_back(std::make_unique<PoolHandle<CharaBase>>(CharacterFactory::Instance().CreatePlayer(0, 1)));
     players.push_back(std::make_unique<PoolHandle<CharaBase>>(CharacterFactory::Instance().CreatePlayer(1, 1)));
@@ -20,7 +20,7 @@ Game::Game() {
 void Game::Init() {}
 
 void Game::Update() {
-    if (isGameOver) return; // 無限ループ防止
+    if (isGame) return; // 無限ループ防止
 
     // 線の描画（ただただ見やすくするため）
     Text::Instance().Line();
@@ -55,7 +55,7 @@ void Game::Update() {
     // --- 勝利判定 ---
     if (enemies.empty()) {
         std::cout << "\033[34m" << "プレイヤーの勝利です！\n" << "\033[0m";
-        isGameOver = true;
+        isGame = true;
         return;
     }
 
@@ -83,12 +83,12 @@ void Game::Update() {
     // --- 敗北判定 ---
     if (players.empty()) {
         std::cout << "\033[31m" << "敵の勝利です！\n" << "\033[0m";
-        isGameOver = true;
+        isGame = true;
     }
 }
 
 
 void Game::Render() {
-    if (isGameOver)  return; // 無限ループ防ぐ
+    if (isGame)  return; // 無限ループ防ぐ
     Text::Instance().Line();
 }

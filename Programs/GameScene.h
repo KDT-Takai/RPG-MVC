@@ -7,7 +7,7 @@
 // ゲームスクリーン
 class Game : public ScreenBase {
 private:
-    bool isGameOver;    // 無限ループ防ぐ
+    bool isGame;    // 無限ループ防ぐ
 
     // プレイヤーとエネミーの配列
     std::vector<std::shared_ptr<PoolHandle<CharaBase>>> players;
