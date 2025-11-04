@@ -8,6 +8,11 @@ protected:
 	int level;				// レベル
 	CharaData charaData;	// データ
 
+	// レベルによって加算用の定数
+	const int LevelUpHpBonus = 10;
+	const int LevelUpAtkBonus = 2;
+	const int LevelUpDefBonus = 2;
+
 public:
 
 //	CharaBase() = default;
@@ -15,12 +20,13 @@ public:
 	// 初期化処理
 	void Init(const CharaData& base, int level) {
 		this->level = level;
-		charaData.id = base.id;
-		charaData.name = base.name;
-		charaData.hp = base.hp + level * 10;
-		charaData.atk = base.atk + level * 2;
-		charaData.def = base.def + level * 2;
+		this->charaData.id = base.id;
+		this->charaData.name = base.name;
+		this->charaData.hp = base.hp + level * LevelUpHpBonus;
+		this->charaData.atk = base.atk + level * LevelUpAtkBonus;
+		this->charaData.def = base.def + level * LevelUpDefBonus;
 	}
+	// 死亡判定
 	bool IsDead() const { return charaData.hp <= 0; }
 	// 情報アクセス
 	const CharaData& GetData() { return charaData; }
@@ -31,6 +37,8 @@ public:
 	// ダメージを受ける
 	void TakeDamage(int dmg) {
 		charaData.hp -= dmg;
-		if (charaData.hp < 0) charaData.hp = 0;
+		if (charaData.hp < 0) {
+			charaData.hp = 0;
+		}
 	}
 };
