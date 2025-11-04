@@ -4,18 +4,14 @@
 
 class CharaBase {
 protected:
-
 	int level;				// レベル
 	CharaData charaData;	// データ
 
 	// レベルによって加算用の定数
-	const int LevelUpHpBonus = 10;
-	const int LevelUpAtkBonus = 2;
-	const int LevelUpDefBonus = 2;
-
+	const int LevelUpHpBonus = 10;	// HPの加算用
+	const int LevelUpAtkBonus = 2;	// Atkの加算用
+	const int LevelUpDefBonus = 2;	// Defの加算用
 public:
-
-//	CharaBase() = default;
 	virtual ~CharaBase() = default;
 	// 初期化処理
 	void Init(const CharaData& base, int level) {

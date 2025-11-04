@@ -16,12 +16,13 @@ private:
     ObjectPool<CharaBase> enemyPool;
 
 public:
-
+    // データ
     static const CharaData PlayerBaseState[];
     static const CharaData EnemyBaseState[];
+    // データサイズ
     static const int PlayerTableSize;
     static const int EnemyTableSize;
-
+    // プールのデータサイズ
     static const int POOL_SIZE = 8;
 
     // コンストラクタでサイズをあらかじめ決める

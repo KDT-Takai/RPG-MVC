@@ -2,33 +2,38 @@
 #include "CharaBase.h"
 #include "BattleView.h"
 #include "ObjectPool.h"
+#include <iostream>
 
 class BattleController
 {
 private:
 	
-    CharaBase* Player;
-	CharaBase* Enemy;
+    // それぞれを持つ
+    CharaBase* Owner;
+	CharaBase* Target;
 	BattleView* View;
 
 public:
 
-	BattleController(CharaBase* player, CharaBase* enemy, BattleView* view)
-        : Player(player), Enemy(enemy), View(view) {}
+	BattleController(CharaBase* owner, CharaBase* target, BattleView* view)
+        : Owner(owner), Target(target), View(view) {}
 
-    BattleController(PoolHandle<CharaBase*> player, PoolHandle<CharaBase*> enemy, BattleView* view)
-        : Player(*player), Enemy(*enemy), View(view) {
+    BattleController(PoolHandle<CharaBase*> owner, PoolHandle<CharaBase*> target, BattleView* view)
+        : Owner(*owner), Target(*target), View(view) {
     }
 
-    void processAttack() {
-        std::cout << "processAttack" << std::endl;
+    /// <summary>
+    /// 攻撃処理
+    /// </summary>
+    /// <param name="isPlayerAttacker">FALSE : RED, TRUE : BLUE</param>
+    void processAttack(bool isPlayerAttacker) {
         // Modelから攻撃力を取得
-        int damage = Player->GetData().atk;
+        int damage = Owner->GetData().atk;
         // Modelにダメージを適用
-        Enemy->TakeDamage(damage);
-
+        Target->TakeDamage(damage);
+        
         // Viewに表示
-        View->ShowDamge(Enemy->GetData().name, damage);
-        View->ShowStatus(Enemy->GetLevel(), Enemy->GetData());
+        View->ShowDamage(Target->GetData().name, damage, isPlayerAttacker);
+        View->ShowStatus(Target->GetLevel(), Target->GetData());
     }
 };

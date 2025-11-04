@@ -11,8 +11,10 @@ public:
 			<< "DEF:" << data.def << std::endl;
 	}
 	// ダメージ表示
-	void ShowDamge(std::string name, int damage) {
-		std::cout << name << "に" << damage << "ダメージ！" << std::endl;
+	void ShowDamage(std::string name, int damage, bool isPlayer) {
+		// プレイヤーの場合青、敵の場合赤
+		std::string color = isPlayer ? "\033[34m" : "\033[31m";  // 青はプレイヤー、赤は敵
+		std::cout << color << name << "\033[0mに" << "\033[33m" << damage << "ダメージ！\033[0m" << std::endl;
 	}
 	// メッセージ表示
 	void ShowMassage(std::string msg) {

@@ -106,8 +106,4 @@
       <Filter>Game\BattleController</Filter>
     </ClInclude>
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="Memo.txt" />
-    <Text Include="MVCmemo.txt" />
-  </ItemGroup>
 </Project>

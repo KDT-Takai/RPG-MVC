@@ -39,10 +39,6 @@
     <ClInclude Include="Programs\Singleton.h" />
     <ClInclude Include="Programs\Text.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="Memo.txt" />
-    <Text Include="MVCmemo.txt" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
