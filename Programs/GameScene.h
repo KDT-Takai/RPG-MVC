@@ -8,11 +8,8 @@ class Game : public ScreenBase {
 private:
     bool isGameOver;    // –³ŒÀƒ‹[ƒv–h‚®
 
-    // Vector‚Ìunique_ptr‚Å‚Â
-    std::vector<std::unique_ptr<PoolHandle<CharaBase>>> players;
-    std::vector<std::unique_ptr<PoolHandle<CharaBase>>> enemies;
-    // BattleController
-//    std::unique_ptr<BattleController> battleControllerv;
+    std::vector<std::shared_ptr<PoolHandle<CharaBase>>> players;
+    std::vector<std::shared_ptr<PoolHandle<CharaBase>>> enemies;
 
 public:
     Game();

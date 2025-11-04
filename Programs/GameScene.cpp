@@ -20,34 +20,39 @@ Game::Game() {
 void Game::Init() {}
 
 void Game::Update() {
-    if (isGameOver)  return;// 無限ループ防ぐ
+    if (isGameOver) return; // 無限ループ防止
+
     Text::Instance().Line();
+
     // --- プレイヤーターン ---
-    for (auto it = players.begin(); it != players.end(); ++it) {    // プレイヤーの数だけ
+    for (auto& playerPtr : players) {
         if (enemies.empty()) break;
+        auto& player = *playerPtr;
+        if (player->IsDead()) continue;
+        std::cout << player->GetData().name << " のターン。攻撃を選択してください (0~"
+            << enemies.size() - 1 << "): ";
 
-        PoolHandle<CharaBase>& p = **it; // unique_ptrの中身にアクセス
-        if (p->IsDead()) continue;
-        // 描画
-        std::cout << p->GetData().name << " のターン。攻撃を選択してください : 0~" << enemies.size() - 1 << "): ";
-        int choice;     // 誰を選択したかの表示
+        // 敵選択
+        int choice = -1;
         std::cin >> choice;
-        // 攻撃処理
-        if (choice >= 0 && choice < (int)enemies.size()) {
-            PoolHandle<CharaBase>& targetEnemy = *enemies[choice];
-            
-            BattleView battleView;  // View
-            BattleController battleController(p.operator->(), enemies[choice]->operator->(), &battleView);
-            battleController.processAttack();
 
+        if (choice < 0 || choice >= static_cast<int>(enemies.size())) continue;
 
-            if (targetEnemy->GetData().hp <= 0) {
-                std::cout << targetEnemy->GetData().name << " は倒れた！\n";
-                enemies.erase(enemies.begin() + choice);
-            }
+        // 選択されたエネミー
+        auto& enemy = *enemies[choice];
+
+        BattleView battleView;
+        BattleController battleController(player.operator->(), enemy.operator->(), &battleView);
+        battleController.processAttack();
+
+        // HPが0になった場合
+        if (enemy->IsDead()) {
+            std::cout << enemy->GetData().name << " は倒れた！\n";
+            enemies.erase(enemies.begin() + choice);
         }
     }
-    // 確認
+
+    // --- 勝利判定 ---
     if (enemies.empty()) {
         std::cout << "プレイヤーの勝利です！\n";
         isGameOver = true;
@@ -55,31 +60,32 @@ void Game::Update() {
     }
 
     // --- 敵ターン ---
-    for (auto it = enemies.begin(); it != enemies.end(); ++it) {
+    for (auto& enemyPtr : enemies) {
         if (players.empty()) break;
 
-        PoolHandle<CharaBase>& e = **it;
-        if (e->IsDead()) continue;
-        int targetIndex = std::rand() % players.size();
-        PoolHandle<CharaBase>& targetPlayer = *players[targetIndex];
+        auto& enemy = *enemyPtr;
+        if (enemy->IsDead()) continue;
 
-        BattleView battleView;  // View
-        BattleController battleController(e.operator->(), players[targetIndex]->operator->(), &battleView);
+        int targetIndex = std::rand() % players.size();
+        auto& player = *players[targetIndex];
+
+        BattleView battleView;
+        BattleController battleController(enemy.operator->(), player.operator->(), &battleView);
         battleController.processAttack();
 
-        if (targetPlayer->GetData().hp <= 0) {
-            std::cout << targetPlayer->GetData().name << " は倒れた！\n";
+        if (player->IsDead()) {
+            std::cout << player->GetData().name << " は倒れた！\n";
             players.erase(players.begin() + targetIndex);
         }
     }
 
-    // 確認
+    // --- 敗北判定 ---
     if (players.empty()) {
         std::cout << "敵の勝利です！\n";
         isGameOver = true;
-        return;
     }
 }
+
 
 void Game::Render() {
     if (isGameOver)  return; // 無限ループ防ぐ

@@ -29,6 +29,6 @@ public:
 
         // View‚É•\¦
         View->ShowDamge(Enemy->GetData().name, damage);
-        View->ShowStatus(1, Enemy->GetData());
+        View->ShowStatus(Enemy->GetLevel(), Enemy->GetData());
     }
 };
