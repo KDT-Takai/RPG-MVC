@@ -4,5 +4,4 @@
 
 class Player : public CharaBase {
 public:
-
 };

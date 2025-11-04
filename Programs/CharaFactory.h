@@ -22,9 +22,11 @@ public:
     static const int PlayerTableSize;
     static const int EnemyTableSize;
 
+    static const int POOL_SIZE = 8;
+
     // コンストラクタでサイズをあらかじめ決める
     CharacterFactory()
-        : playerPool(8), enemyPool(8) {}
+        : playerPool(POOL_SIZE), enemyPool(POOL_SIZE) {}
 
     // 生成
     PoolHandle<CharaBase> CreatePlayer(int ID, int level);
