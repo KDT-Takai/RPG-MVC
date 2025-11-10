@@ -15,6 +15,9 @@ Game::Game() {
     // エネミー生成
     enemies.push_back(std::make_unique<PoolHandle<CharaBase>>(CharacterFactory::Instance().CreateEnemy(0, 2)));
     enemies.push_back(std::make_unique<PoolHandle<CharaBase>>(CharacterFactory::Instance().CreateEnemy(3, 4)));
+    // 描画や戦闘システム生成
+    battleView = std::make_shared<BattleView>();
+    battleController = std::make_shared<BattleController>(nullptr, nullptr, battleView.get());
 }
 
 void Game::Init() {}
@@ -42,8 +45,8 @@ void Game::Update() {
         auto& enemy = *enemies[choice];
 
         // 戦闘画面の文字表示
-        BattleController battleController(player.operator->(), enemy.operator->(), &battleView);
-        battleController.processAttack(false);  // エネミーが攻撃受けるので赤
+        battleController->SetActors(player.operator->(), enemy.operator->());
+        battleController->processAttack(false);
 
         // HPが0になった場合
         if (enemy->IsDead()) {
@@ -70,8 +73,8 @@ void Game::Update() {
         auto& player = *players[targetIndex];
 
         // 戦闘画面の文字表示
-        BattleController battleController(enemy.operator->(), player.operator->(), &battleView);
-        battleController.processAttack(true);   // プレイヤーが攻撃受けるので青
+        battleController->SetActors(enemy.operator->(), player.operator->());
+        battleController->processAttack(true);
         
         // HPが0になった場合
         if (player->IsDead()) {

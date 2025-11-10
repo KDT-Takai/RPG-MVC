@@ -14,7 +14,8 @@ private:
     std::vector<std::shared_ptr<PoolHandle<CharaBase>>> enemies;
 
     // í“¬‰æ–Ê‚Ì•¶š•\¦
-    BattleView battleView;
+    std::shared_ptr<BattleView> battleView;
+    std::shared_ptr<BattleController> battleController;
 
 public:
     Game();
